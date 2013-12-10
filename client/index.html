@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Points of Interest &bull; KIT-Smart-Campus &bull; WASA-Proseminar</title>
+    <link rel="stylesheet" href="css/standard.css" type="text/css" />
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  </head>
+  <body id="management">
+    <div id="hint">Prototyp</div>
+    <div id="container">
+      <header>
+        <img src="images/logo.png" alt="Logo des Karlsruher Institut für Technologie" class="logo" />
+        <hgroup>
+          <h1>KIT-Smart-Campus</h1>
+          <h2>Auflistung und Filterung von Points of Interest</h2>
+        </hgroup>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="#" class="noimplementation">Startseite</a></li>
+          <li><em>Points of Interest</em></li>
+          <li><a href="#" class="noimplementation">Campus-Plan</a></li>
+        </ul>
+        <br class="clear" />
+      </nav>
+
+      <section id="content" role="main">
+        <h1>Points of Interest</h1>
+        
+        <form>
+          <fieldset>
+            <legend>Suchfilter</legend>
+            
+            <div class="keywords">
+              <label for="keywords">Stichwörter</label>
+              <input type="text" name="keywords" class="keywords" id="keywords" placeholder="Tragen Sie hier Stichwörter ein, nach denen Sie suchen möchten" />
+            </div>
+            
+            <div class="categories">
+              <span class="categories">Kategorien</span>
+              <label class="checkbox"><input type="checkbox" name="lecturehall" value="1" /> Hörsaal</label>
+              <label class="checkbox"><input type="checkbox" name="cafe" value="1" /> Café</label>
+              <label class="checkbox"><input type="checkbox" name="workingplace" value="1" /> Arbeitsplatz</label>
+            </div>
+            <br class="clear" />
+            
+            <div class="radius">
+              <label for="radius" title="Die Umkreissuche bezieht sich auf Ihren aktuellen Standort">Umkreissuche</label>
+              <span class="input"><span class="prefix">0m</span> <input type="range" min="100" max="2000" step="50" value="200" onchange="javascript:document.getElementById('radius_value').innerHTML = this.value;" /> <span class="suffix">2000m</span></span>
+              <p>Suche im Umkreis von <strong id="radius_value">200</strong> Metern um Ihren aktuellen Standort.</p>
+            </div>
+          </fieldset>
+        </form>
+        
+        <article>
+          <h2>Audimax</h2>
+          <span class="image">image<br />replacement</span>
+          
+          <p class="shortdescription">Der größte Hörsaal des KIT ist das 2002 eröffnete Audimax (Auditorium maximum), welches 734 Plätze hat. Dahinter folgt der Gerthsen-Hörsaal mit 705 Plätzen.</p>
+          
+          <section class="facts">
+            <h3>Fakten</h3>
+            <dl>
+              <dt>Erbaut</dt>
+              <dd><time datetime="2002-02-17">17. Februar 2002</time></dd>
+              <dt>Sitzplätze</dt>
+              <dd>734</dd>
+              <dt>Besonderheiten</dt>
+              <dd>Getränke- und Snackautomat</dd>
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+            <ul>
+              <li>Hörsaal</li>
+              <li>Veranstaltungen</li>
+            </ul>
+            <br class="clear" />
+          </section>
+        </article>
+        
+        <article>
+          <h2>AKK</h2>
+          
+          <span class="image">image<br />replacement</span>
+          
+          <p class="shortdescription">Im Alten Stadion befindet sich des Weiteren der Arbeitskreis Kultur und Kommunikation. Dieser Arbeitskreis, basierend allein auf Ehrenamtlichen, hat sich der Förderung von kulturellen Angeboten für Studierende gewidmet.</p>
+          
+          <section class="facts">
+            <h3>Fakten</h3>
+            <dl>
+              <dt>Erbaut</dt>
+              <dd><time datetime="1934-05-13">13. Mai 1934</time></dd>
+              <dt>Sitzplätze</dt>
+              <dd>500</dd>
+              <dt>Kaffeetassen</dt>
+              <dd>2.537</dd>
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+            <ul>
+              <li>Kultur</li>
+              <li>Freizeit</li>
+              <li>Café</li>
+              <li>Veranstaltungen</li>
+            </ul>
+            <br class="clear" />
+          </section>
+        </article>
+        
+        <article>
+          <h2>Bibliothek</h2>
+          
+          <span class="image">image<br />replacement</span>
+          
+          <p class="shortdescription">Die KIT-Bibliothek ist die zentrale Bibliothek des Karlsruher Instituts für Technologie (KIT). Sie ist Ende des Jahres 2009 entstanden infolge des Zusammenschlusses der ehemaligen Universität Karlsruhe und des Forschungszentrums Karlsruhe.</p>
+          
+          <section class="facts">
+            <h3>Fakten</h3>
+            <dl>
+              <dt>Erbaut</dt>
+              <dd><time datetime="1418-11-01">01. November 1418</time></dd>
+              <dt>Bücher</dt>
+              <dd>329.684</dd>
+              <dt>Besonderheiten</dt>
+              <dd>24 Stunden geöffnet</dd>
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+            <ul>
+              <li>Arbeitsraum</li>
+              <li>Bibliothek</li>
+            </ul>
+            <br class="clear" />
+          </section>
+        </article>
+
+        <article>
+          <h2>Maschinenbau-Hochhaus</h2>
+          
+          <span class="image">image<br />replacement</span>
+          
+          <p class="shortdescription">Im grünen Maschinenbau-Hochhaus an der Kaiserstraße gibt es nur Einzelarbeitsplätze</p>
+          
+          <section class="facts">
+            <dl>
+              <dt>freie Arbeitsplätze</dt>
+              <dd><meter max="52" min="0" low="3" high="13" value="27">27</meter> <i>27 von 52</i></dd>
+              <dt>Entfernung</dt>
+              <dd><meter max="250" value="130">130</meter> <i>130m</i></dd>
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+            <ul>
+              <li>Einzelarbeitsplätze</li>
+            </ul>
+            <br class="clear" />
+          </section>
+        </article>
+       <article>
+          <h2>Chemie-Gebäude</h2>
+          <span class="image">image<br />replacement</span>
+          
+          <p class="shortdescription">Das Chemie-Gebäude liegt neben dem Forum und bietet viele Arbeitsplätze für Einzelne und Gruppen</p>
+          
+          <section class="facts">
+            <dl>
+              <dt>freie Arbeitsplätze</dt>
+              <dd><meter max="321" min="0" low="16" high="80" value="30">21</meter> <i>30 von 321</i></dd>
+              <dt>Entfernung</dt>
+              <dd><meter max="250" value="150">150</meter> <i>150m</i></dd>
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+            <ul>
+              <li>Einzelarbeitsplätze</li>
+              <li>Gruppenarbeitsplätze</li>
+            </ul>
+            <br class="clear" />
+          </section>
+        </article>
+        
+        <article>
+          <h2>Bibliothek</h2>
+          
+          <span class="image">image<br />replacement</span>
+          
+          <p class="shortdescription">Die Bibliothek neben der Mensa bietet sowohl Stillarbeitsplätze, als auch Gruppenarbeitsräume an</p>
+          
+          <section class="facts">
+            <dl>
+              <dt>freie Arbeitsplätze</dt>
+              <dd><meter max="420" min="0" low="21" high="105" value="19"></meter> <i>19 von 420</i></dd>
+              <dt>Entfernung</dt>
+              <dd><meter max="250" value="150">200</meter> <i>200m</i></dd>
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+            <ul>
+              <li>Einzelarbeitsplätze</li>
+              <li>Stillarbeitsplätze</li>
+              <li>Gruppenarbeitsplätze</li>
+              <li>Gruppenarbeitsräume</li>
+            </ul>
+            <br class="clear" />
+          </section>
+        </article>
+      </section>
+      
+      <aside>
+        <div class="block">
+          <h1>About</h1>
+          <p>Der Prototyp stellt eine Ergänzung zur Seminararbeit &quot;Moderne Web-Technologien&quot; im Wintersemester 2013/14 dar.</p>
+          <p>Das Hauptziel ist die Erstellung eines Artefaktes anhand dessen die in der Seminararbeit behandelten Technologien und der Funktionsweise demonstriert werden.</p>
+          <p><em>Die in diesem Prototypen verwendeten Daten sind frei erfunden!</em></p>
+        </div>
+        <div class="block">
+          <h1>Changelog</h1>
+          <h2><time datetime="2013-12-02">2. Dezember 2013</time></h2>
+          <ul>
+            <li>Meter-Element im Listing hinzugefügt.</li>
+          </ul>
+        </div>
+      </aside>
+            
+      <footer>
+        <span class="university">Karlsruher Institut für Technologie</span>
+        <span class="institute">Cooperation &amp; Management</span>
+        <span>&copy; WASA-Proseminargruppe WS2013/14</span>
+      </footer>
+  </body>
+</html>
+
