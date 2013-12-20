@@ -28,7 +28,7 @@
 
       <section id="content" role="main">
         <h1>Points of Interest</h1>
-        <form>
+        <form method="POST" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Neuen POI anlegen</legend>
 				<table>
@@ -46,6 +46,9 @@
 					</tr>
 					<tr>
 						<td>E-Mail</td><td><input type="email" name="mail" placeholder="beispiel@kit.edu"></td>
+					</tr>
+					<tr>
+						<td>Audio-Datei</td><td><input type="file" name="audiodatei" accept="audio/*"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><i>* Pflichtfeld</i></td>
