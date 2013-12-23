@@ -5,7 +5,12 @@
 <web-app>
 	<servlet>
 		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>edu.kit.tm.cm.sc.HelloWorld</servlet-class>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>edu.kit.tm.cm.sc</param-value>
+		</init-param>
+		<load-on-startup>true</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HelloWorld</servlet-name>
