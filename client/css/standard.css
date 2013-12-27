@@ -139,7 +139,7 @@ footer .institute { display:block; float:right; }
 #detailOverlay #plantlayout { width:250px; height:150px;background-color:#ccc;  }
 
 #hint { position:absolute; top:10px; right:10px; color:#009682; font-size:16px; font-weight:bold; text-transform:uppercase; z-index:9999; }
-
+#listTemplate { display:none; }
 
 
 
