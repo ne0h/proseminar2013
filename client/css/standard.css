@@ -129,6 +129,7 @@ footer .institute { display:block; float:right; }
 #createOverlay .formelement.audio { clear:left; }
 #createOverlay .formelement.hint { padding-top:15px; font-style:italic; }
 #createOverlay .submit { text-align:right; }
+#createOverlay textarea { height:84px; }
 #detailOverlay { width:800px; height:600px; padding-right:15px; margin-top:-250px; }
 #detailOverlay section { margin-top:30px; }
 #detailOverlay .column.wide { float:left; width:480px; margin-right:20px; }

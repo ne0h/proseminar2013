@@ -243,10 +243,10 @@
       <section id="createOverlay" class="overlay">
         <fieldset>
           <legend>Neuen Point of Interest anlegen</legend>
-          <-- @JS Team: generate id-->
+          <!-- @JS Team: generate id-->
 		  
           <div class="formelement">
-            <label for="create_name"class="required">Name *</label>
+            <label for="create_name"class="required">Name</label>
             <input type="text" name="create_name" class="create_name" id="create_name" required="required" placeholder="Bitte Namen eingeben" />
           </div>
           
@@ -257,17 +257,7 @@
           
           <div class="formelement">
             <label for="create_description">Beschreibung</label>
-            <textarea name="create_description" class="create_description" id="create_description" placeholder="Bitte geben Sie hier eine kurze Beschreibung ein" rows="5" cols="30"></textarea>
-          </div>
-          
-          <div class="formelement audio">
-            <label for="create_audio">Audio-Datei</label>
-            <input type="file" name="create_audio" class="create_audio" id="create_audio" accept="audio/*" />
-          </div>
-		  
-          <div class="formelement">
-            <label for="create_website">Website</label>
-            <input type="url" name="create_website" class="create_website" id="create_website" placeholder="http://www.example.com" />
+            <textarea name="create_description" class="create_description" id="create_description" placeholder="Bitte geben Sie hier eine kurze Beschreibung ein" rows="4" cols="30"></textarea>
           </div>
 
           <div class="formelement">
@@ -291,13 +281,18 @@
           </div>
 		  
           <div class="formelement">
-            <label for="create_latitude">Breitengrad *</label>
+            <label for="create_latitude" class="required">Breitengrad</label>
             <input type="text" name="create_latitude" class="create_latitude" id="create_latitude" required="required" placeholder="Bitte Breitengrad eingeben" />
           </div>
 
           <div class="formelement">
-            <label for="create_longitude">Längengrad *</label>
+            <label for="create_longitude" class="required">Längengrad</label>
             <input type="text" name="create_longitude" class="create_longitude" id="create_longitude" required="required" placeholder="Bitte Längengrad eingeben" />
+          </div>
+      
+          <div class="formelement">
+            <label for="create_website">Website</label>
+            <input type="url" name="create_website" class="create_website" id="create_website" placeholder="http://www.example.com" />
           </div>
 
           <div class="formelement">
@@ -306,8 +301,13 @@
           </div>
 
           <div class="formelement">
-            <label for="create_facts">Fakten *</label>
+            <label for="create_facts" class="required">Fakten</label>
             <input type="text" name="create_facts" class="create_facts" id="create_facts" placeholder="Bitte Fakten zu diesem POI, mit ; getrennt eingeben" />
+          </div>
+          
+          <div class="formelement audio">
+            <label for="create_audio">Audio-Datei</label>
+            <input type="file" name="create_audio" class="create_audio" id="create_audio" accept="audio/*" />
           </div>
 
           <div class="formelement hint">
