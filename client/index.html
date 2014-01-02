@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8" />
@@ -79,7 +79,7 @@
               <dl>
                 <dt>Erbaut</dt>
                 <dd><time datetime="2002-02-17">17. Februar 2002</time></dd>
-                <dt>Sitzplätze</dt>
+                <dt>Plätze</dt>
                 <dd>734</dd>
                 <dt>Besonderheiten</dt>
                 <dd>Getränke- und Snackautomat</dd>
@@ -108,10 +108,10 @@
               <dl>
                 <dt>Erbaut</dt>
                 <dd><time datetime="1934-05-13">13. Mai 1934</time></dd>
-                <dt>Sitzplätze</dt>
+                <dt>Plätze</dt>
                 <dd>500</dd>
-                <dt>Kaffeetassen</dt>
-                <dd>2.537</dd>
+                <dt>Besonderheiten</dt>
+                <dd>2.537 Kaffeetassen</dd>
               </dl>
             </section>
          
@@ -128,7 +128,7 @@
           </article>
           
           <article>
-            <h2>Bibliothek</h2>
+            <h2>KIT-Bibliothek Süd</h2>
             
             <span class="image">image<br />replacement</span>
             
@@ -139,10 +139,11 @@
               <dl>
                 <dt>Erbaut</dt>
                 <dd><time datetime="1418-11-01">01. November 1418</time></dd>
-                <dt>Bücher</dt>
-                <dd>329.684</dd>
+                <dt>Plätze</dt>
+                <dd>790</dd>
                 <dt>Besonderheiten</dt>
                 <dd>24 Stunden geöffnet</dd>
+                <dd>329.684 Bücher</dd>
               </dl>
             </section>
                     
@@ -181,7 +182,8 @@
               <br class="clear" />
             </section>
           </article>
-         <article>
+        
+		<article>
             <h2>Chemie-Gebäude</h2>
             <span class="image">image<br />replacement</span>
             
@@ -241,15 +243,16 @@
       <section id="createOverlay" class="overlay">
         <fieldset>
           <legend>Neuen Point of Interest anlegen</legend>
-          
+          <-- @JS Team: generate id-->
+		  
           <div class="formelement">
-            <label for="create_title"class="required">Titel</label>
-            <input type="text" name="create_title" class="create_title" id="create_title" required="required" placeholder="Bitte Titel eingeben" />
+            <label for="create_name"class="required">Name</label>
+            <input type="text" name="create_name" class="create_name" id="create_name" required="required" placeholder="Bitte Namen eingeben" />
           </div>
           
           <div class="formelement">
             <label for="create_number">Gebäudenummer</label>
-            <input type="text" name="create_number" class="create_number" id="create_number" placeholder="XX.XX" />
+            <input type="text" name="create_number" class="create_number" id="create_number" placeholder="Gebäudenummer der Form XX.XX" />
           </div>
           
           <div class="formelement">
@@ -257,21 +260,56 @@
             <textarea name="create_description" class="create_description" id="create_description" placeholder="Bitte geben Sie hier eine kurze Beschreibung ein" rows="5" cols="30"></textarea>
           </div>
           
-          <div class="formelement">
-            <label for="create_website">Website</label>
-            <input type="url" name="create_website" class="create_website" id="create_website" placeholder="http://www.example.com" />
-          </div>
-          
-          <div class="formelement">
-            <label for="create_email">E-Mail</label>
-            <input type="email" name="create_email" class="create_email" id="create_email" placeholder="exam.ple@example.com" />
-          </div>
-          
           <div class="formelement audio">
             <label for="create_audio">Audio-Datei</label>
             <input type="file" name="create_audio" class="create_audio" id="create_audio" accept="audio/*" />
           </div>
-          
+		  
+          <div class="formelement">
+            <label for="create_website">Website</label>
+            <input type="url" name="create_website" class="create_website" id="create_website" placeholder="http://www.example.com" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_street">Straße</label>
+            <input type="text" name="create_street" class="create_street" id="create_street" placeholder="Bitte Straßenname und -nummer eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_zip_code">Postleitzahl</label>
+            <input type="text" name="create_zip_code" class="create_zip_code" id="create_zip_code" placeholder="Bitte PLZ eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_city">Stadt</label>
+            <input type="text" name="create_city" class="create_city" id="create_city" value="Karlsruhe" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_country">Land</label>
+            <input type="text" name="create_country" class="create_country" id="create_country" value="Deutschland" />
+          </div>
+		  
+          <div class="formelement">
+            <label for="create_latitude">Breitengrad</label>
+            <input type="text" name="create_latitude" class="create_latitude" id="create_latitude" placeholder="Bitte Breitengrad eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_longitude">Längengrad</label>
+            <input type="text" name="create_longitude" class="create_longitude" id="create_longitude" placeholder="Bitte Längengrad eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_tags"></label>
+            <input type="text" name="create_tags" class="create_tags" id="create_tags" placeholder="Bitte Tags zu diesem POI, mit ; getrennt eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_facts"></label>
+            <input type="text" name="create_facts" class="create_facts" id="create_facts" placeholder="Bitte Fakten zu diesem POI, mit ; getrennt eingeben" />
+          </div>
+
           <div class="formelement hint">
             <p>Mit einem Stern (*) gekennzeichnete Felder sind Pflichtfelder.</p>
           </div>
@@ -331,13 +369,12 @@
             <dl id="detailOverlay_facts">
               <dt>Erbaut</dt>
               <dd><time datetime="1418-11-01">01. November 1418</time></dd>
-              <dt>Bücher</dt>
-              <dd>329.684</dd>
               <dt>Besonderheiten</dt>
               <dd>24 Stunden geöffnet</dd>
+              <dd>329.684 Bücher</dd>
             </dl>
             <dl id="detailOverlay_locational">
-              <dt>Arbeitsplätze</dt>
+              <dt>Plätze</dt>
               <dd><meter max="52" min="0" low="5" high="13" value="4" title="4 von 52 Arbeitsplätze sind frei">4 freie Arbeitsplätze</meter></dd>
               <dt>Entfernung</dt>
               <dd><meter max="250" value="130" title="Das Gebäude ist 130 Meter entfernt">130 Meter</meter></dd>
