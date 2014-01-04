@@ -173,11 +173,16 @@ exports.deletePOI = function(poiID) {
 };
 
 exports.addPOI = function(newPOI) {
+	var poiId = poisWithDetails[poisWithDetails.length - 1].id + 1;
+	newPOI.id = poiId;
 	poisWithDetails.push(newPOI);
 	var poi = {};
 	poi.id = newPOI.id;
 	poi.name = newPOI.name;
 	poi.link = "http://api.kit.edu/pois/" + poi.id + "/";
+	poi.tags = newPOI.tags;
+	poi.facts = newPOI.facts;
+	poi.description = newPOI.description;
 	pois.push(poi);
 };
 

@@ -33,7 +33,7 @@
       <section id="content" role="main">
         <h1>Points of Interest</h1>
         
-        <p class="createpoi"><a href="javascript:alert('open create form overlay!');" id="createpoi">neuen Point of Interest anlegen</a></p>
+        <p class="createpoi"><a href="javascript:showCreateOverlay();" id="createpoi">neuen Point of Interest anlegen</a></p>
         
         <form>
           <fieldset>
@@ -70,146 +70,7 @@
         </section>
         
         <div id="listing">
-          <article>
-            <h2>Audimax</h2>
-            <span class="image">image<br />replacement</span>
-            
-            <p class="shortdescription">Der größte Hörsaal des KIT ist das 2002 eröffnete Audimax (Auditorium maximum), welches 734 Plätze hat. Dahinter folgt der Gerthsen-Hörsaal mit 705 Plätzen.</p>
-            
-            <section class="facts">
-              <h3>Fakten</h3>
-              <dl>
-                <dt>Erbaut</dt>
-                <dd><time datetime="2002-02-17">17. Februar 2002</time></dd>
-                <dt>Plätze</dt>
-                <dd>734</dd>
-                <dt>Besonderheiten</dt>
-                <dd>Getränke- und Snackautomat</dd>
-              </dl>
-            </section>
-  
-            <section class="tags">
-              <h3>Tags</h3>
-              <ul>
-                <li>Hörsaal</li>
-                <li>Veranstaltungen</li>
-              </ul>
-              <br class="clear" />
-            </section>
-          </article>
           
-          <article>
-            <h2>AKK</h2>
-            
-            <span class="image">image<br />replacement</span>
-            
-            <p class="shortdescription">Im Alten Stadion befindet sich des Weiteren der Arbeitskreis Kultur und Kommunikation. Dieser Arbeitskreis, basierend allein auf Ehrenamtlichen, hat sich der Förderung von kulturellen Angeboten für Studierende gewidmet.</p>
-            
-            <section class="facts">
-              <h3>Fakten</h3>
-              <dl>
-                <dt>Erbaut</dt>
-                <dd><time datetime="1934-05-13">13. Mai 1934</time></dd>
-                <dt>Plätze</dt>
-                <dd>500</dd>
-                <dt>Besonderheiten</dt>
-                <dd>2.537 Kaffeetassen</dd>
-              </dl>
-            </section>
-         
-            <section class="tags">
-              <h3>Tags</h3>
-              <ul>
-                <li>Kultur</li>
-                <li>Freizeit</li>
-                <li>Café</li>
-                <li>Veranstaltungen</li>
-              </ul>
-              <br class="clear" />
-            </section>
-          </article>
-          
-          <article>
-            <h2>KIT-Bibliothek Süd</h2>
-            
-            <span class="image">image<br />replacement</span>
-            
-            <p class="shortdescription">Die KIT-Bibliothek ist die zentrale Bibliothek des Karlsruher Instituts für Technologie (KIT). Sie ist Ende des Jahres 2009 entstanden infolge des Zusammenschlusses der ehemaligen Universität Karlsruhe und des Forschungszentrums Karlsruhe.</p>
-            
-            <section class="facts">
-              <h3>Fakten</h3>
-              <dl>
-                <dt>Erbaut</dt>
-                <dd><time datetime="1418-11-01">01. November 1418</time></dd>
-                <dt>Plätze</dt>
-                <dd>790</dd>
-                <dt>Besonderheiten</dt>
-                <dd>24 Stunden geöffnet</dd>
-                <dd>329.684 Bücher</dd>
-              </dl>
-            </section>
-                    
-            <section class="tags">
-              <h3>Tags</h3>
-              <ul>
-                <li>Arbeitsraum</li>
-                <li>Bibliothek</li>
-              </ul>
-              <br class="clear" />
-            </section>
-          </article>
-  
-          <article>
-            <h2>Maschinenbau-Hochhaus</h2>
-            
-            <span class="image">image<br />replacement</span>
-            
-            <p class="shortdescription">Im grünen Maschinenbau-Hochhaus an der Kaiserstraße gibt es nur Einzelarbeitsplätze.</p>
-            
-            <section class="facts">
-              <h3>Fakten</h3>
-              <dl>
-                <dt>Erbaut</dt>
-                <dd><time datetime="1984-06-25">25. Juni 1984</time></dd>
-                <dt>Besonderheiten</dt>
-                <dd>Kaffeeautomat</dd>
-              </dl>
-            </section>
-            
-            <section class="tags">
-              <h3>Tags</h3>
-              <ul>
-                <li>Einzelarbeitsplätze</li>
-              </ul>
-              <br class="clear" />
-            </section>
-          </article>
-        
-		<article>
-            <h2>Chemie-Gebäude</h2>
-            <span class="image">image<br />replacement</span>
-            
-            <p class="shortdescription">Das Chemie-Gebäude liegt neben dem Forum und bietet viele Arbeitsplätze für Einzelne und Gruppen.</p>
-            
-            <section class="facts">
-              <h3>Fakten</h3>
-              <dl>
-                <dt>Erbaut</dt>
-                <dd>ja, aber unbekannt wann</dd>
-                <dt>Besonderheiten</dt>
-                <dd>Studierende in weißen Kitteln</dd>
-              </dl>
-            </section>
-            
-            <section class="tags">
-              <h3>Tags</h3>
-              <ul>
-                <li>Einzelarbeitsplätze</li>
-                <li>Gruppenarbeitsplätze</li>
-              </ul>
-              <br class="clear" />
-            </section>
-          </article>
         </div>
       </section>
       
@@ -318,10 +179,10 @@
         </fieldset>
           
         <div class="submit">
-          <input type="submit" name="create_submit" id="create_submit" onclick="javascript:alert('close overlay!');" value="anlegen" />
+          <input type="submit" name="create_submit" id="create_submit" onclick="javascript:addPOI();" value="anlegen" />
         </div>
         
-        <a href="javascript:alert('close overlay!');" class="close">x</a>
+        <a href="javascript:closeOverlay();" class="close">x</a>
       </section>
       
       <section id="detailOverlay" class="overlay">

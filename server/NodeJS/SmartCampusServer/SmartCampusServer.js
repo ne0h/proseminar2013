@@ -5,7 +5,6 @@ http
 					var paths = request.url.split("/");
 					var urlSplit = paths[1].split("?");
 					paths[1] = urlSplit[0];
-					console.log(urlSplit);
 					switch (paths[1]) {
 						case 'pois':
 
