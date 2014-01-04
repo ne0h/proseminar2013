@@ -67,6 +67,7 @@ http
 										;
 									} else {
 										response.writeHead(200, {
+											'Access-Control-Allow-Origin' : '*',
 											"Content-Type" : "application/json"
 										});
 										response.end(JSON.stringify(poiController.getAllPOIs()));

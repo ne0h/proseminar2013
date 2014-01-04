@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Points of Interest &bull; KIT-Smart-Campus &bull; WASA-Proseminar</title>
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="js/smartCampus.js"></script>
     <link rel="stylesheet" href="css/standard.css" type="text/css" />
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   </head>
@@ -52,7 +54,7 @@
             
             <div class="radius">
               <label for="radius" title="Die Umkreissuche bezieht sich auf Ihren aktuellen Standort">Umkreissuche</label>
-              <span class="input"><span class="prefix">0m</span> <input type="range" min="100" max="2000" step="50" value="200" onchange="javascript:document.getElementById('radius_value').innerHTML = this.value;" /> <span class="suffix">2000m</span></span>
+              <span class="input"><span class="prefix">0m</span> <input id="radius_range" type="range" min="100" max="2000" step="50" value="200" onchange="javascript:document.getElementById('radius_value').innerHTML = this.value;" /> <span class="suffix">2000m</span></span>
               <p>Suche im Umkreis von <strong id="radius_value">200</strong> Metern um Ihren aktuellen Standort.</p>
             </div>
             
@@ -388,21 +390,32 @@
       
       <section id="listTemplate">
         <article>
-          <h2 id="listTemplate_name"></h2>
+          <h2 id="listTemplate_name">{name}</h2>
           <span class="image">image<br />replacement</span>
           
-          <p id="listTemplate_shortdescription" class="shortdescription"></p>
+          <p id="listTemplate_shortdescription" class="shortdescription">{description}</p>
           
           <section class="facts">
             <h3>Fakten</h3>
             <dl id="listTemplate_facts">
+			<dt>Erbaut</dt>
+                <dd><time datetime="2002-02-17">{facts/buildDate}</time></dd>
+                <dt>Plätze</dt>
+                <dd>{facts/seats}</dd>
+                <dt>Besonderheiten</dt>
+				{facts/#repeat/#listTemplate_facts_specials/special/
+				<div id="listTemplate_facts_specials">
+                <dd>{ }</dd>
+				</div>}
             </dl>
           </section>
           
           <section class="tags">
             <h3>Tags</h3>
+			{#repeat/#listTemplate_tags/tags/
             <ul id="listTemplate_tags">
-            </ul>
+				<li>{ }</li>
+            </ul>}
             <br class="clear" />
           </section>
         </article>
