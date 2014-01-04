@@ -46,9 +46,10 @@
             
             <div class="categories">
               <span class="categories">Kategorien</span>
-              <label class="checkbox"><input type="checkbox" name="lecturehall" value="1" /> Hörsaal</label>
-              <label class="checkbox"><input type="checkbox" name="cafe" value="1" /> Café</label>
-              <label class="checkbox"><input type="checkbox" name="workingplace" value="1" /> Arbeitsplatz</label>
+              <label class="checkbox"><input type="radio" name="category" value="all" checked="checked" /> Alle</label>
+              <label class="checkbox"><input type="radio" name="category" value="1" /> Hörsaal</label>
+              <label class="checkbox"><input type="radio" name="category" value="2" /> Café</label>
+              <label class="checkbox"><input type="radio" name="category" value="3" /> Arbeitsplatz</label>
             </div>
             <br class="clear" />
             
@@ -106,8 +107,7 @@
       <section id="createOverlay" class="overlay">
         <fieldset>
           <legend>Neuen Point of Interest anlegen</legend>
-          <!-- @JS Team: generate id-->
-		  
+          
           <div class="formelement">
             <label for="create_name"class="required">Name</label>
             <input type="text" name="create_name" class="create_name" id="create_name" required="required" placeholder="Bitte Namen eingeben" />
@@ -163,19 +163,27 @@
             <input type="text" name="create_tags" class="create_tags" id="create_tags" placeholder="Bitte Tags zu diesem POI, mit ; getrennt eingeben" />
           </div>
 
-          <div class="formelement">
-            <label for="create_facts" class="required">Fakten</label>
-            <input type="text" name="create_facts" class="create_facts" id="create_facts" placeholder="Bitte Fakten zu diesem POI, mit ; getrennt eingeben" />
-          </div>
-          
-          <div class="formelement audio">
-            <label for="create_audio">Audio-Datei</label>
-            <input type="file" name="create_audio" class="create_audio" id="create_audio" accept="audio/*" />
+          <div class="formelement builddate">
+            <label for="create_builddate">Erbaut</label>
+            <input type="date" name="create_builddate" class="create_builddate" id="create_builddate" />
           </div>
 
-          <div class="formelement hint">
-            <p>Mit einem Stern (*) gekennzeichnete Felder sind Pflichtfelder.</p>
+          <div class="formelement">
+            <label for="create_places" class="required">Plätze</label>
+            <input type="number" name="create_places" min="0" class="create_places" id="create_places" />
           </div>
+
+          <div class="formelement">
+            <label for="create_facts" class="required">Besonderheiten</label>
+            <input type="text" name="create_facts" class="create_facts" id="create_facts" placeholder="Bitte Besonderheiten zu diesem POI, mit ; getrennt eingeben" />
+          </div>
+          
+          <div class="formelement ">
+            <label for="create_image">Bild-Datei</label>
+            <input type="file" name="create_image" class="create_image" id="create_image" accept="image/*" />
+          </div>
+
+          <p class="hint">Mit einem Stern (*) gekennzeichnete Felder sind Pflichtfelder.</p>
         </fieldset>
           
         <div class="submit">
