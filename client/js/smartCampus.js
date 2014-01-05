@@ -68,9 +68,10 @@ function addPOI() {
 	var name = $('#create_name').val();
 	var latitude = $('#create_latitude').val();
 	var longitude = $('#create_longitude').val();
-	var facts = $('#create_facts').val();
+	var places = $('#create_places').val();
+	var specials = $('#create_facts').val();
 
-	if (name !== "" && latitude !== "" && longitude !== "" && facts !== "") {
+	if (name !== "" && latitude !== "" && longitude !== "" && places !== "" && specials !== "") {
 
 		var createNumber = $('#create_number').val();
 		var createDescription = $('#create_description').val();
@@ -81,6 +82,7 @@ function addPOI() {
 		var createWebsite = $('#create_website').val();
 		var createTags = $('#create_tags').val();
 		var createAudio = $('#create_audio').val();
+		var createBuilddate = $('#create_builddate').val();
 
 		var poi = {
 			name : name,
@@ -99,9 +101,9 @@ function addPOI() {
 			description : createDescription,
 			audio : createAudio,
 			facts : {
-				buildDate : "1984-06-25",
-				seats : 200,
-				special : [ "TEST" ]
+				buildDate : createBuilddate,
+				seats : places,
+				special : specials.split(';')
 			},
 			website : createWebsite
 
@@ -211,9 +213,9 @@ $(document).ready(function() {
 		var keywordValue = $(this).val();
 		var radius = $('#radius_range')[0].value;
 		var criterias = new RoomSearchCriteria();
-		$('.categories input[type=checkbox]').each(function() {
+		$('.categories input[type=radio]').each(function() {
 			if (this.checked) {
-				var roomProperty = new RoomProperty(this.getAttribute('name'));
+				var roomProperty = new RoomProperty(this.getAttribute('value'));
 				criterias.addCriteria(roomProperty);
 			}
 			;
