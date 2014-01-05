@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <title>Points of Interest &bull; KIT-Smart-Campus &bull; WASA-Proseminar</title>
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="js/smartCampus.js"></script>
     <link rel="stylesheet" href="css/standard.css" type="text/css" />
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   </head>
@@ -18,7 +20,9 @@
         
       </header>
 
-      <nav>
+      <nav id="navigation">
+        <a href="#navigation" class="button">Menü</a>
+        <a href="index.html" class="closer"></a>
         <ul>
           <li><a href="#" class="noimplementation">Startseite</a></li>
           <li><em>Points of Interest</em></li>
@@ -30,196 +34,47 @@
       <section id="content" role="main">
         <h1>Points of Interest</h1>
         
+        <p class="createpoi"><a href="javascript:showCreateOverlay();" id="createpoi">neuen Point of Interest anlegen</a></p>
+        
         <form>
           <fieldset>
             <legend>Suchfilter</legend>
             
             <div class="keywords">
               <label for="keywords">Stichwörter</label>
-              <input type="text" name="keywords" class="keywords" id="keywords" placeholder="Tragen Sie hier Stichwörter ein, nach denen Sie suchen möchten" />
+              <input type="search" name="keywords" class="keywords" id="keywords" placeholder="Tragen Sie hier Stichwörter ein, nach denen Sie suchen möchten" />
             </div>
             
             <div class="categories">
               <span class="categories">Kategorien</span>
-              <label class="checkbox"><input type="checkbox" name="lecturehall" value="1" /> Hörsaal</label>
-              <label class="checkbox"><input type="checkbox" name="cafe" value="1" /> Café</label>
-              <label class="checkbox"><input type="checkbox" name="workingplace" value="1" /> Arbeitsplatz</label>
+              <label class="checkbox"><input type="radio" name="category" value="all" checked="checked" /> Alle</label>
+              <label class="checkbox"><input type="radio" name="category" value="1" /> Hörsaal</label>
+              <label class="checkbox"><input type="radio" name="category" value="2" /> Café</label>
+              <label class="checkbox"><input type="radio" name="category" value="3" /> Arbeitsplatz</label>
             </div>
             
             <br class="clear" />
             
             <div class="radius">
               <label for="radius" title="Die Umkreissuche bezieht sich auf Ihren aktuellen Standort">Umkreissuche</label>
-              <span class="input"><span class="prefix">0m</span> <input type="range" min="100" max="2000" step="50" value="200" onchange="javascript:document.getElementById('radius_value').innerHTML = this.value;" /> <span class="suffix">2000m</span></span>
+              <span class="input"><span class="prefix">0m</span> <input id="radius_range" type="range" min="100" max="2000" step="50" value="200" onchange="javascript:document.getElementById('radius_value').innerHTML = this.value;" /> <span class="suffix">2000m</span></span>
               <p>Suche im Umkreis von <strong id="radius_value">200</strong> Metern um Ihren aktuellen Standort.</p>
+            </div>
+            
+            <div class="submit">
+              <input type="submit" class="submit" value="suchen!" />
             </div>
           </fieldset>
         </form>
         
-        <article>
-          
-          <span class="image">image<br />replacement</span>
-          <h2>Audimax</h2>
-          <p class="shortdescription">Der größte Hörsaal des KIT ist das 2002 eröffnete Audimax (Auditorium maximum), welches 734 Plätze hat. Dahinter folgt der Gerthsen-Hörsaal mit 705 Plätzen.</p>
-          
-          <section class="facts">
-            <h3>Fakten</h3>
-            <dl>
-              <dt>Erbaut</dt>
-              <dd><time datetime="2002-02-17">17. Februar 2002</time></dd>
-              <dt>Sitzplätze</dt>
-              <dd>734</dd>
-              <dt>Besonderheiten</dt>
-              <dd>Getränke- und Snackautomat</dd>
-            </dl>
-          </section>
-          
-          <section class="tags">
-            <h3>Tags</h3>
-            <ul>
-              <li>Hörsaal</li>
-              <li>Veranstaltungen</li>
-            </ul>
-            <br class="clear" />
-          </section>
-        </article>
+        <section id ="loader" style="display:none">
+          <p><em>Die Daten werden geladen...</em></p>
+          <progress>Ladevorgang...</progress>
+        </section>
         
-        <article>
-          <h2>AKK</h2>
+        <div id="listing">
           
-          <span class="image">image<br />replacement</span>
-          
-          <p class="shortdescription">Im Alten Stadion befindet sich des Weiteren der Arbeitskreis Kultur und Kommunikation. Dieser Arbeitskreis, basierend allein auf Ehrenamtlichen, hat sich der Förderung von kulturellen Angeboten für Studierende gewidmet.</p>
-          
-          <section class="facts">
-            <h3>Fakten</h3>
-            <dl>
-              <dt>Erbaut</dt>
-              <dd><time datetime="1934-05-13">13. Mai 1934</time></dd>
-              <dt>Sitzplätze</dt>
-              <dd>500</dd>
-              <dt>Kaffeetassen</dt>
-              <dd>2.537</dd>
-            </dl>
-          </section>
-          
-          <section class="tags">
-            <h3>Tags</h3>
-            <ul>
-              <li>Kultur</li>
-              <li>Freizeit</li>
-              <li>Café</li>
-              <li>Veranstaltungen</li>
-            </ul>
-            <br class="clear" />
-          </section>
-        </article>
-        
-        <article>
-          <h2>Bibliothek</h2>
-          
-          <span class="image">image<br />replacement</span>
-          
-          <p class="shortdescription">Die KIT-Bibliothek ist die zentrale Bibliothek des Karlsruher Instituts für Technologie (KIT). Sie ist Ende des Jahres 2009 entstanden infolge des Zusammenschlusses der ehemaligen Universität Karlsruhe und des Forschungszentrums Karlsruhe.</p>
-          
-          <section class="facts">
-            <h3>Fakten</h3>
-            <dl>
-              <dt>Erbaut</dt>
-              <dd><time datetime="1418-11-01">01. November 1418</time></dd>
-              <dt>Bücher</dt>
-              <dd>329.684</dd>
-              <dt>Besonderheiten</dt>
-              <dd>24 Stunden geöffnet</dd>
-            </dl>
-          </section>
-          
-          <section class="tags">
-            <h3>Tags</h3>
-            <ul>
-              <li>Arbeitsraum</li>
-              <li>Bibliothek</li>
-            </ul>
-            <br class="clear" />
-          </section>
-        </article>
-
-        <article>
-          <h2>Maschinenbau-Hochhaus</h2>
-          
-          <span class="image">image<br />replacement</span>
-          
-          <p class="shortdescription">Im grünen Maschinenbau-Hochhaus an der Kaiserstraße gibt es nur Einzelarbeitsplätze</p>
-          
-          <section class="facts">
-            <dl>
-              <dt>freie Arbeitsplätze</dt>
-              <dd><meter max="52" min="0" low="3" high="13" value="27">27</meter> <i>27 von 52</i></dd>
-              <dt>Entfernung</dt>
-              <dd><meter max="250" value="130">130</meter> <i>130m</i></dd>
-            </dl>
-          </section>
-          
-          <section class="tags">
-            <h3>Tags</h3>
-            <ul>
-              <li>Einzelarbeitsplätze</li>
-            </ul>
-            <br class="clear" />
-          </section>
-        </article>
-       <article>
-          <h2>Chemie-Gebäude</h2>
-          <span class="image">image<br />replacement</span>
-          
-          <p class="shortdescription">Das Chemie-Gebäude liegt neben dem Forum und bietet viele Arbeitsplätze für Einzelne und Gruppen</p>
-          
-          <section class="facts">
-            <dl>
-              <dt>freie Arbeitsplätze</dt>
-              <dd><meter max="321" min="0" low="16" high="80" value="30">21</meter> <i>30 von 321</i></dd>
-              <dt>Entfernung</dt>
-              <dd><meter max="250" value="150">150</meter> <i>150m</i></dd>
-            </dl>
-          </section>
-          
-          <section class="tags">
-            <h3>Tags</h3>
-            <ul>
-              <li>Einzelarbeitsplätze</li>
-              <li>Gruppenarbeitsplätze</li>
-            </ul>
-            <br class="clear" />
-          </section>
-        </article>
-        
-        <article>
-          <h2>Bibliothek</h2>
-          
-          <span class="image">image<br />replacement</span>
-          
-          <p class="shortdescription">Die Bibliothek neben der Mensa bietet sowohl Stillarbeitsplätze, als auch Gruppenarbeitsräume an</p>
-          
-          <section class="facts">
-            <dl>
-              <dt>freie Arbeitsplätze</dt>
-              <dd><meter max="420" min="0" low="21" high="105" value="19"></meter> <i>19 von 420</i></dd>
-              <dt>Entfernung</dt>
-              <dd><meter max="250" value="150">200</meter> <i>200m</i></dd>
-            </dl>
-          </section>
-          
-          <section class="tags">
-            <h3>Tags</h3>
-            <ul>
-              <li>Einzelarbeitsplätze</li>
-              <li>Stillarbeitsplätze</li>
-              <li>Gruppenarbeitsplätze</li>
-              <li>Gruppenarbeitsräume</li>
-            </ul>
-            <br class="clear" />
-          </section>
-        </article>
+        </div>
       </section>
       
       <aside>
@@ -235,9 +90,12 @@
           <ul>
             <li>Meter-Element im Listing hinzugefügt.</li>
           </ul>
-          <h2><time datetime="2013-12-12">12. Dezember 2013</time></h2>
+          <h2><time datetime="2013-12-20">20. Dezember 2013</time></h2>
           <ul>
-            <li>Umbau für Responsive Webdesign</li>
+            <li>Overlay zum Anlegen von POIs</li>
+            <li>Overlay für POI-Details</li>
+            <li>Überarbeitung der POI-Liste</li>
+            <li>Submit für das Suchformular</li>
           </ul>
         </div>
       </aside>
@@ -247,5 +105,197 @@
         <span class="institute">Cooperation &amp; Management</span>
         <span>&copy; WASA-Proseminargruppe WS2013/14</span>
       </footer>
+      
+      <section id="createOverlay" class="overlay">
+        <fieldset>
+          <legend>Neuen Point of Interest anlegen</legend>
+          
+          <div class="formelement">
+            <label for="create_name"class="required">Name</label>
+            <input type="text" name="create_name" class="create_name" id="create_name" required="required" placeholder="Bitte Namen eingeben" />
+          </div>
+          
+          <div class="formelement">
+            <label for="create_number">Gebäudenummer</label>
+            <input type="text" name="create_number" class="create_number" id="create_number" placeholder="Gebäudenummer der Form XX.XX" />
+          </div>
+          
+          <div class="formelement">
+            <label for="create_description">Beschreibung</label>
+            <textarea name="create_description" class="create_description" id="create_description" placeholder="Bitte geben Sie hier eine kurze Beschreibung ein" rows="4" cols="30"></textarea>
+          </div>
+
+          <div class="formelement">
+            <label for="create_street">Straße</label>
+            <input type="text" name="create_street" class="create_street" id="create_street" placeholder="Bitte Straßenname und -nummer eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_zip_code">Postleitzahl</label>
+            <input type="text" name="create_zip_code" class="create_zip_code" id="create_zip_code" placeholder="Bitte PLZ eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_city">Stadt</label>
+            <input type="text" name="create_city" class="create_city" id="create_city" value="Karlsruhe" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_country">Land</label>
+            <input type="text" name="create_country" class="create_country" id="create_country" value="Deutschland" />
+          </div>
+		  
+          <div class="formelement">
+            <label for="create_latitude" class="required">Breitengrad</label>
+            <input type="text" name="create_latitude" class="create_latitude" id="create_latitude" required="required" placeholder="Bitte Breitengrad eingeben" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_longitude" class="required">Längengrad</label>
+            <input type="text" name="create_longitude" class="create_longitude" id="create_longitude" required="required" placeholder="Bitte Längengrad eingeben" />
+          </div>
+      
+          <div class="formelement">
+            <label for="create_website">Website</label>
+            <input type="url" name="create_website" class="create_website" id="create_website" placeholder="http://www.example.com" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_tags">Tags</label>
+            <input type="text" name="create_tags" class="create_tags" id="create_tags" placeholder="Bitte Tags zu diesem POI, mit ; getrennt eingeben" />
+          </div>
+
+          <div class="formelement builddate">
+            <label for="create_builddate">Erbaut</label>
+            <input type="date" name="create_builddate" class="create_builddate" id="create_builddate" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_places" class="required">Plätze</label>
+            <input type="number" name="create_places" min="0" class="create_places" id="create_places" />
+          </div>
+
+          <div class="formelement">
+            <label for="create_facts" class="required">Besonderheiten</label>
+            <input type="text" name="create_facts" class="create_facts" id="create_facts" placeholder="Bitte Besonderheiten zu diesem POI, mit ; getrennt eingeben" />
+          </div>
+          
+          <div class="formelement ">
+            <label for="create_image">Bild-Datei</label>
+            <input type="file" name="create_image" class="create_image" id="create_image" accept="image/*" />
+          </div>
+
+          <p class="hint">Mit einem Stern (*) gekennzeichnete Felder sind Pflichtfelder.</p>
+        </fieldset>
+          
+        <div class="submit">
+          <input type="submit" name="create_submit" id="create_submit" onclick="javascript:addPOI();" value="anlegen" />
+        </div>
+        
+        <a href="javascript:closeOverlay();" class="close">x</a>
+      </section>
+      
+      <section id="detailOverlay" class="overlay">
+      </section>
+	  
+	  <section id="detailOverlayTemplate" class="overlay" style="display: none">
+        <h1 id="detailOverlay_name">{name}</h1>
+        <section class="tags">
+          <h2>Tags</h2>
+		  {#repeat/#detailOverlay_tags/tags/
+            <ul id="detailOverlay_tags">
+				<li>{ }</li>
+            </ul>}
+          <br class="clear" />
+        </section>
+        
+        <div class="column wide">
+          <section id="detailOverlay_description" class="description">
+            <p>{description}</p>
+          </section>
+          
+          <section class="images">
+            <span class="image">image<br />replacement</span>
+          </section>
+          
+          <section class="facts">
+            <h2>Route</h2>
+            
+            <figure>
+              <audio src="audiodatei.wav" controls="controls">
+                Hier steht der Navigationstext der in der Audiodatei vorgelesen wird.
+              </audio>
+              <figcaption>Navigation von Ihrem aktuellen Standpunkt zur Bibliothek.</figcaption>
+            </figure>
+          </section>
+        </div>
+        
+        <div class="column small">
+          <section class="plantlayout">
+            <h2>Gebäudeplan</h2>
+            <canvas id="plantlayout"></canvas>
+            <p>JAVASCRIPT GRUPPE<br />
+            GEBÄUDE-CANVAS</p>
+          </section>
+        
+          <section class="facts">
+            <h2>Informationen</h2>
+            <dl id="detailOverlay_facts">
+              <dt>Erbaut</dt>
+              <dd><time datetime="{facts/buildDate}">{facts/buildDate}</time></dd>
+              <dt>Besonderheiten</dt>
+			  {facts/#repeat/#detailTemplate_facts_specials/special/
+				<div id="detailTemplate_facts_specials">
+                <dd>{ }</dd>
+				</div>}
+            </dl>
+            <dl id="detailOverlay_locational">
+              <dt>Plätze</dt>
+              <dd><meter max="52" min="0" low="5" high="13" value="4" title="4 von 52 Arbeitsplätze sind frei">4 freie Arbeitsplätze</meter></dd>
+              <dt>Entfernung</dt>
+              <dd><meter max="250" value="130" title="Das Gebäude ist 130 Meter entfernt">130 Meter</meter></dd>
+            </dl>
+          </section>
+        </div>
+        <br class="clear" />
+        
+        <a href="javascript:closeOverlay();" class="close">x</a>
+      </section>
+      
+      <section id="listTemplate">
+        <article>
+          <h2 id="listTemplate_name">{name}</h2>
+          <span class="image">image<br />replacement</span>
+          
+          <p id="listTemplate_shortdescription" class="shortdescription">{description}</p>
+          
+          <section class="facts">
+            <h3>Fakten</h3>
+            <dl id="listTemplate_facts">
+			<dt>Erbaut</dt>
+                <dd><time datetime="2002-02-17">{facts/buildDate}</time></dd>
+                <dt>Plätze</dt>
+                <dd>{facts/seats}</dd>
+                <dt>Besonderheiten</dt>
+				{facts/#repeat/#listTemplate_facts_specials/special/
+				<div id="listTemplate_facts_specials">
+                <dd>{ }</dd>
+				</div>}
+            </dl>
+          </section>
+          
+          <section class="tags">
+            <h3>Tags</h3>
+			{#repeat/#listTemplate_tags/tags/
+            <ul id="listTemplate_tags">
+				<li>{ }</li>
+            </ul>}
+            <br class="clear" />
+          </section>
+        </article>
+      </section>
+      
+      <!-- semi transparent overlay background -->
+      <div id="overlay">&nbsp;</div>
   </body>
 </html>

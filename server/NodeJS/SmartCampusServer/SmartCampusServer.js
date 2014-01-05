@@ -3,6 +3,8 @@ http
 		.createServer(
 				function(request, response) {
 					var paths = request.url.split("/");
+					var urlSplit = paths[1].split("?");
+					paths[1] = urlSplit[0];
 					switch (paths[1]) {
 						case 'pois':
 
@@ -17,6 +19,7 @@ http
 
 									request.on('end', function() {
 										response.writeHead(200, "OK", {
+											'Access-Control-Allow-Origin' : '*',
 											'Content-Type' : 'application/json'
 										});
 										response.end(JSON.stringify(poi));
@@ -50,6 +53,7 @@ http
 													break;
 												default:
 													response.writeHead(200, {
+														'Access-Control-Allow-Origin' : '*',
 														"Content-Type" : "application/json"
 													});
 													response.end(JSON.stringify(poiFound));
@@ -57,6 +61,7 @@ http
 											;
 										} else {
 											response.writeHead(404, "Not found", {
+												'Access-Control-Allow-Origin' : '*',
 												'Content-Type' : 'text/html'
 											});
 											response
@@ -67,6 +72,7 @@ http
 										;
 									} else {
 										response.writeHead(200, {
+											'Access-Control-Allow-Origin' : '*',
 											"Content-Type" : "application/json"
 										});
 										response.end(JSON.stringify(poiController.getAllPOIs()));
@@ -95,6 +101,7 @@ http
 										}
 									} else {
 										response.writeHead(405, "Method not supported", {
+											'Access-Control-Allow-Origin' : '*',
 											'Content-Type' : 'text/html'
 										});
 										response
@@ -106,6 +113,7 @@ http
 									break;
 								default:
 									response.writeHead(405, "Method not supported", {
+										'Access-Control-Allow-Origin' : '*',
 										'Content-Type' : 'text/html'
 									});
 									response
@@ -116,6 +124,7 @@ http
 							break;
 						default:
 							response.writeHead(404, "Not found", {
+								'Access-Control-Allow-Origin' : '*',
 								'Content-Type' : 'text/html'
 							});
 							response
