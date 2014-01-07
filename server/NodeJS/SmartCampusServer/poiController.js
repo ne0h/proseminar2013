@@ -193,3 +193,21 @@ exports.getAllPOIs = function() {
 exports.getPOI = function(poiID) {
 	return searchPOI(poiID);
 };
+
+exports.searchPOIsWithParameters = function(parameters) {
+	if (parameters["search"]) {
+		var searchValue = parameters["search"].toLowerCase();
+		var filteredPois = [];
+		for (key in pois) {
+			var tempPOI = pois[key];
+			var name = tempPOI.name.toLowerCase();
+			if (name.search(searchValue) > -1) {
+				filteredPois.push(tempPOI);
+			}
+
+		}
+		return filteredPois;
+	} else {
+		return pois;
+	}
+};

@@ -1,3 +1,5 @@
+var searchValueGlobal = "";
+
 function RoomProperty(name) {
 
 	this.name = name;
@@ -146,11 +148,12 @@ function getPOIDetails(poiID) {
 	});
 }
 
-function searchPOI(keywordValue, criterias, radius) {
+function searchPOIAjax(keywordValue, criterias, radius, position) {
 	var data = {
 		search : keywordValue,
 		category : criterias.getCriteriaName(),
-		radius : radius
+		radius : radius,
+		nearby : position.coords.latitude + "_" + position.coords.longitude
 	};
 	$.ajax({
 		url : "http://localhost:8888/pois",
@@ -185,6 +188,25 @@ function showDetails(evt) {
 	getPOIDetails(evt.data.poi.id);
 }
 
+function searchPOI() {
+
+	$('#loader').show();
+	var keywordValue = $('#keywords').val();
+	searchValueGlobal = keywordValue;
+	var radius = $('#radius_range').val();
+	var criterias = new RoomSearchCriteria();
+	$('.categories input[type=radio]').each(function() {
+		if (this.checked) {
+			var roomProperty = new RoomProperty(this.getAttribute('value'));
+			criterias.addCriteria(roomProperty);
+		}
+		;
+	});
+	navigator.geolocation.getCurrentPosition(function(position) {
+		searchPOIAjax(keywordValue, criterias, radius, position);
+	});
+}
+
 function showCreateOverlay() {
 
 	$('#createOverlay').show();
@@ -202,25 +224,20 @@ $(document).ready(function() {
 
 	var criterias = new RoomSearchCriteria();
 	searchPOI("", criterias, "");
+	searchValueGlobal = $('#keywords').val();
 	$('#detailOverlay').click(function(event) {
 		event.stopPropagation();
 	});
 	$('#overlay').click(function(event) {
 		closeOverlay();
 	});
-	$("#keywords").keyup(function() {
-		$('#loader').show();
-		var keywordValue = $(this).val();
-		var radius = $('#radius_range')[0].value;
-		var criterias = new RoomSearchCriteria();
-		$('.categories input[type=radio]').each(function() {
-			if (this.checked) {
-				var roomProperty = new RoomProperty(this.getAttribute('value'));
-				criterias.addCriteria(roomProperty);
-			}
-			;
-		});
-		searchPOI(keywordValue, criterias, radius);
-
+	$('#keywords').on('input', function(e) {
+		searchPOI();
+	});
+	$('#radius_range').mouseup(function() {
+		searchPOI();
+	});
+	$('.categories input[type=radio]').change(function() {
+		searchPOI();
 	});
 });

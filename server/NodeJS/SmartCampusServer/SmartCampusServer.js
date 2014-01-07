@@ -70,6 +70,23 @@ http
 															+ '</h1></body></html>');
 										}
 										;
+									} else if (urlSplit.length > 1) {
+										var tempParameters = urlSplit[1].split("&");
+										console.log(tempParameters);
+										var parameters = [];
+										for (key in tempParameters) {
+											var tempParameter = tempParameters[key];
+											var tempParameterSplitted = tempParameter.split("=");
+											if (tempParameterSplitted.length > 1) {
+												parameters[tempParameterSplitted[0]] = tempParameterSplitted[1];
+											}
+										}
+										response.writeHead(200, {
+											'Access-Control-Allow-Origin' : '*',
+											"Content-Type" : "application/json"
+										});
+										response.end(JSON.stringify(poiController
+												.searchPOIsWithParameters(parameters)));
 									} else {
 										response.writeHead(200, {
 											'Access-Control-Allow-Origin' : '*',
