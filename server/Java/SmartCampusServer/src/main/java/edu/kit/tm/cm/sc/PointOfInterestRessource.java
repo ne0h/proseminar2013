@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
@@ -47,6 +48,12 @@ public class PointOfInterestRessource {
 		pois.put(poi.getId(), poi);
 	}
 
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<PointOfInterest> getAllPOIs() {
+		return pois.values();
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createPOI(InputStream is) {
