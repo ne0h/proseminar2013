@@ -31,20 +31,22 @@ public class PointOfInterestRessource {
 	private static Map<Integer, PointOfInterest> pois = new ConcurrentHashMap<Integer, PointOfInterest>();
 	private static AtomicInteger id = new AtomicInteger();
 
-	public PointOfInterestRessource() throws JsonParseException, JsonMappingException, IOException {
+	public PointOfInterestRessource() throws JsonParseException,
+			JsonMappingException, IOException {
 		ObjectMapper m = new ObjectMapper();
-		PointOfInterest[] defaultPois = m.readValue(new File("src/main/resources/pois.json"), PointOfInterest[].class);
+		PointOfInterest[] defaultPois = m.readValue(new File(
+				"src/main/resources/pois.json"), PointOfInterest[].class);
 		for (PointOfInterest poi : defaultPois) {
 			pois.put(poi.getId(), poi);
 		}
-		
+
 	}
 
 	@GET
 	public Collection<PointOfInterest> getAllPOIs() {
 		return pois.values();
 	}
-	
+
 	@POST
 	public Response createPOI(PointOfInterest poi) {
 		poi.setId(id.incrementAndGet());
