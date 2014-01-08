@@ -115,7 +115,9 @@ function addPOI() {
 		$.ajax({
 			url : "http://localhost:8888/pois",
 			async : true,
-			accepts : "application/json",
+			accepts : {
+				text : "application/json",
+			},
 			type : "POST",
 			data : JSON.stringify(poi)
 		}).success(function(data, textStatus, jqXHR) {
@@ -134,7 +136,9 @@ function getPOIDetails(poiID) {
 	$.ajax({
 		url : "http://localhost:8888/pois/" + poiID,
 		async : true,
-		accepts : "application/json",
+		accepts : {
+			text : "application/json",
+		},
 		type : "GET",
 	}).success(function(data, textStatus, jqXHR) {
 
