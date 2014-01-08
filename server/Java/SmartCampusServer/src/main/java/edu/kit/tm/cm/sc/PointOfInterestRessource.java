@@ -1,12 +1,10 @@
 package edu.kit.tm.cm.sc;
 
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,7 +27,6 @@ public class PointOfInterestRessource {
 	private Map<Integer, PointOfInterest> pois = new ConcurrentHashMap<Integer, PointOfInterest>();
 	private AtomicInteger id = new AtomicInteger();
 
-	@SuppressWarnings("deprecation")
 	public PointOfInterestRessource() throws MalformedURLException {
 		PointOfInterest poi = new PointOfInterest();
 		poi.setId(1534);
@@ -42,7 +39,7 @@ public class PointOfInterestRessource {
 				"Veranstaltungen")));
 		poi.setDescription("Der größte Hörsaal des KIT […]");
 		poi.setAudio(new URL("http://www.prototyp.kit.edu/audio/1534.wav"));
-		poi.setFacts(new Facts(new Date(2002, 2, 17), 734,
+		poi.setFacts(new Facts("2002-02-17", 734,
 				new LinkedList<String>(Arrays
 						.asList("Getränke- und Snackautomat"))));
 		pois.put(poi.getId(), poi);
@@ -56,8 +53,7 @@ public class PointOfInterestRessource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createPOI(InputStream is) {
-		PointOfInterest poi = readPOI(is);
+	public Response createPOI(PointOfInterest poi) {
 		poi.setId(id.incrementAndGet());
 		pois.put(poi.getId(), poi);
 		return Response.created(URI.create("/pois/" + poi.getId())).build();
@@ -71,32 +67,17 @@ public class PointOfInterestRessource {
 		if (poi == null) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
-		// return new StreamingOutput() {
-		//
-		// @Override
-		// public void write(OutputStream outputstream) throws IOException,
-		// WebApplicationException {
-		// outputPOI(outputstream, poi);
-		// }
-		// };
 		return poi;
 	}
 
 	@PUT
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updatePOI(@PathParam("id") int id, InputStream is) {
-		PointOfInterest update = readPOI(is);
-		PointOfInterest current = pois.get(id);
-		if (current == null) {
+	public void updatePOI(PointOfInterest update) {
+		if (!pois.containsKey(update.getId())) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
-		update.setId(id);
-		pois.put(id, update);
+		pois.put(update.getId(), update);
 	}
 
-	private PointOfInterest readPOI(InputStream is) {
-		// TODO Parse InputStream
-		return null;
-	}
 }

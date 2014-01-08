@@ -1,26 +1,25 @@
 package edu.kit.tm.cm.sc;
 
-import java.util.Date;
 import java.util.List;
 
 public class Facts {
 
-	private Date buildDate;
+	private String buildDate;
 	private int seats;
 	private List<String> special;
 
-	public Facts(Date buildDate, int seats, List<String> special) {
+	public Facts(String buildDate, int seats, List<String> special) {
 		super();
 		this.buildDate = buildDate;
 		this.seats = seats;
 		this.special = special;
 	}
 
-	public Date getBuildDate() {
+	public String getBuildDate() {
 		return buildDate;
 	}
 
-	public void setBuildDate(Date buildDate) {
+	public void setBuildDate(String buildDate) {
 		this.buildDate = buildDate;
 	}
 
