@@ -166,7 +166,9 @@ function searchPOIAjax(keywordValue, criterias, radius, position) {
 	$.ajax({
 		url : "http://localhost:8888/pois",
 		async : true,
-		accepts : "application/json",
+		accepts : {
+			text : "application/json",
+		},
 		type : "GET",
 		data : data,
 	}).success(function(data, textStatus, jqXHR) {
