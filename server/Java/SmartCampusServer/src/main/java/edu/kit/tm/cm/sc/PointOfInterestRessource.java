@@ -1,11 +1,9 @@
 package edu.kit.tm.cm.sc;
 
-import java.net.MalformedURLException;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,6 +19,10 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Path("/pois")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -29,22 +31,12 @@ public class PointOfInterestRessource {
 	private static Map<Integer, PointOfInterest> pois = new ConcurrentHashMap<Integer, PointOfInterest>();
 	private static AtomicInteger id = new AtomicInteger();
 
-	public PointOfInterestRessource() throws MalformedURLException {
-		PointOfInterest poi = new PointOfInterest();
-		poi.setId(1534);
-		poi.setName("Audimax");
-		poi.setBuilding("30.95");
-		poi.setAddress(new Address("Straße am Forum 1", "76131", "Karlsruhe",
-				"Deutschland"));
-		poi.setGeolocation(new Geolocation(49.0134868, 8.4162783));
-		poi.setTags(new LinkedList<String>(Arrays.asList("Hörsaal",
-				"Veranstaltungen")));
-		poi.setDescription("Der größte Hörsaal des KIT […]");
-		poi.setAudio(new URL("http://www.prototyp.kit.edu/audio/1534.wav"));
-		poi.setFacts(new Facts("2002-02-17", 734,
-				new LinkedList<String>(Arrays
-						.asList("Getränke- und Snackautomat"))));
-		pois.put(poi.getId(), poi);
+	public PointOfInterestRessource() throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper m = new ObjectMapper();
+		PointOfInterest[] defaultPois = m.readValue(new File("src/main/resources/pois.json"), PointOfInterest[].class);
+		for (PointOfInterest poi : defaultPois) {
+			pois.put(poi.getId(), poi);
+		}
 		
 	}
 
