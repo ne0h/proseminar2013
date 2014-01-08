@@ -119,7 +119,9 @@ function addPOI() {
 				text : "application/json",
 			},
 			type : "POST",
-			data : JSON.stringify(poi)
+			data : JSON.stringify(poi),
+			dataType : "json",
+			contentType : "application/json;charset=utf-8",
 		}).success(function(data, textStatus, jqXHR) {
 			$("#keywords").keyup();
 			closeOverlay();
