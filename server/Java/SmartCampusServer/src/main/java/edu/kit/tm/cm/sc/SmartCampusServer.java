@@ -1,6 +1,11 @@
 package edu.kit.tm.cm.sc;
 
+import java.io.IOException;
+
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -9,7 +14,18 @@ public class SmartCampusServer extends ResourceConfig {
 
 	public SmartCampusServer() {
 		packages("edu.kit.tm.cm.sc");
-		register(CrossOriginResourceSharingFilter.class);
+		
+		/* enable Cross-Origin Resource Sharing */
+		register(new ContainerResponseFilter() {
+
+			@Override
+			public void filter(ContainerRequestContext requestContext,
+					ContainerResponseContext responseContext)
+					throws IOException {
+				responseContext.getHeaders().putSingle(
+						"Access-Control-Allow-Origin", "*");
+			}
+		});
 	}
 
 }
