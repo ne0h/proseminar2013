@@ -1,4 +1,5 @@
 var searchValueGlobal = "";
+var positionGlobal = null;
 
 function RoomProperty(name) {
 
@@ -149,6 +150,13 @@ function getPOIDetails(poiID) {
 }
 
 function searchPOIAjax(keywordValue, criterias, radius, position) {
+
+	if (!position) {
+		position = {};
+		position.coords = {};
+		position.coords.latitude = 0;
+		position.coords.longitude = 0;
+	}
 	var data = {
 		search : keywordValue,
 		category : criterias.getCriteriaName(),
@@ -202,9 +210,8 @@ function searchPOI() {
 		}
 		;
 	});
-	navigator.geolocation.getCurrentPosition(function(position) {
-		searchPOIAjax(keywordValue, criterias, radius, position);
-	});
+	searchPOIAjax(keywordValue, criterias, radius, positionGlobal);
+
 }
 
 function showCreateOverlay() {
@@ -222,6 +229,9 @@ function closeOverlay() {
 
 $(document).ready(function() {
 
+	navigator.geolocation.getCurrentPosition(function(position) {
+		positionGlobal = position;
+	});
 	var criterias = new RoomSearchCriteria();
 	searchPOI("", criterias, "");
 	searchValueGlobal = $('#keywords').val();
