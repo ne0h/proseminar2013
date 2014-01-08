@@ -21,6 +21,10 @@ public class PointOfInterest {
 
 	private URL website;
 
+	public PointOfInterest() {
+
+	}
+
 	public int getId() {
 		return id;
 	}

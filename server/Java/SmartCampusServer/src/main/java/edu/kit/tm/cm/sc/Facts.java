@@ -8,6 +8,10 @@ public class Facts {
 	private int seats;
 	private List<String> special;
 
+	public Facts() {
+
+	}
+
 	public Facts(String buildDate, int seats, List<String> special) {
 		super();
 		this.buildDate = buildDate;
