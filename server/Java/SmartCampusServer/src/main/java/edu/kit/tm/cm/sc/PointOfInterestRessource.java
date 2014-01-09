@@ -51,7 +51,7 @@ public class PointOfInterestRessource {
 	public Response createPOI(PointOfInterest poi) {
 		poi.setId(id.incrementAndGet());
 		pois.put(poi.getId(), poi);
-		return Response.created(URI.create("/pois/" + poi.getId())).build();
+		return Response.created(URI.create("/pois/" + poi.getId())).entity(poi).build();
 	}
 
 	@GET
