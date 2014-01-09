@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -15,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -42,8 +45,20 @@ public class PointOfInterestRessource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<PointOfInterest> getAllPOIs() {
-		return pois.values();
+	public Collection<PointOfInterest> getPOIs(
+			@QueryParam("search") String search) {
+		if (search == null || search.equals("")) {
+			return pois.values();
+		}
+
+		List<PointOfInterest> filterdPOIs = new LinkedList<PointOfInterest>();
+
+		for (PointOfInterest poi : pois.values()) {
+			if (poi.getName().toLowerCase().contains(search.toLowerCase())) {
+				filterdPOIs.add(poi);
+			}
+		}
+		return filterdPOIs;
 	}
 
 	@POST
@@ -52,7 +67,8 @@ public class PointOfInterestRessource {
 	public Response createPOI(PointOfInterest poi) {
 		poi.setId(id.incrementAndGet());
 		pois.put(poi.getId(), poi);
-		return Response.created(URI.create("/pois/" + poi.getId())).entity(poi).build();
+		return Response.created(URI.create("/pois/" + poi.getId())).entity(poi)
+				.build();
 	}
 
 	@GET
