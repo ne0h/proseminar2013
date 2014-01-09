@@ -24,8 +24,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/pois")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class PointOfInterestRessource {
 
 	private static Map<Integer, PointOfInterest> pois = new ConcurrentHashMap<Integer, PointOfInterest>();
@@ -43,11 +41,14 @@ public class PointOfInterestRessource {
 	}
 
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<PointOfInterest> getAllPOIs() {
 		return pois.values();
 	}
 
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response createPOI(PointOfInterest poi) {
 		poi.setId(id.incrementAndGet());
 		pois.put(poi.getId(), poi);
@@ -56,6 +57,7 @@ public class PointOfInterestRessource {
 
 	@GET
 	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public PointOfInterest getPOI(@PathParam("id") int id) {
 		final PointOfInterest poi = pois.get(id);
 		if (poi == null) {
@@ -66,6 +68,7 @@ public class PointOfInterestRessource {
 
 	@PUT
 	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void updatePOI(PointOfInterest update) {
 		if (!pois.containsKey(update.getId())) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
