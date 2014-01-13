@@ -1,5 +1,6 @@
 package edu.kit.tm.cm.sc;
 
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @Produces(MediaType.APPLICATION_JSON)
 public class JsonProvider implements ContextResolver<ObjectMapper>{
 
-	final ObjectMapper om;
+	private ObjectMapper om;
 	
 	public JsonProvider() {
 		om = new ObjectMapper();
