@@ -8,6 +8,7 @@ import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.MediaType;
 
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 @ApplicationPath("/")
@@ -15,7 +16,10 @@ public class SmartCampusServer extends ResourceConfig {
 
 	public SmartCampusServer() {
 		packages("edu.kit.tm.cm.sc");
-
+		
+		register(JsonProvider.class);
+		register(JacksonFeature.class);
+		
 		/* enable Cross-Origin Resource Sharing */
 		register(new ContainerResponseFilter() {
 
