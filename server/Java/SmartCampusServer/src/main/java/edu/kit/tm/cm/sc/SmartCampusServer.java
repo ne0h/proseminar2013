@@ -10,11 +10,16 @@ import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+
 @ApplicationPath("/")
 public class SmartCampusServer extends ResourceConfig {
 
 	public SmartCampusServer() {
 		packages("edu.kit.tm.cm.sc");
+
+		register(JsonProvider.class);
+		register(JacksonJsonProvider.class);
 
 		/* enable Cross-Origin Resource Sharing */
 		register(new ContainerResponseFilter() {
