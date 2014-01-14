@@ -10,4 +10,8 @@ Use
 
     mvn tomcat7:run
 
-to start the server. It will listen on http://localhost:port/path where port is defined via "maven.tomcat.port" and path via maven.tomcat.path (both in pom.xml).  
+to start the server. It will listen on 
+
+    http://localhost:port/path (default http://localhost:8888/)
+    
+where port is defined via "maven.tomcat.port" and path via maven.tomcat.path (both in pom.xml).  
