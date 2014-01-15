@@ -35,7 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * 
  */
 @Path("/pois")
-public class PointOfInterestRessource {
+public class PointOfInterestResource {
 
 	/**
 	 * This map stores the point of interests, which can be accessed by their
