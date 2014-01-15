@@ -25,12 +25,33 @@ import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * This class defines a resource, that can be accessed by users. JAX-RS
+ * annotations are used to define on which path the resource is accessible,
+ * which methods listen for which HTTP-method on which path and what kind of
+ * data they are expecting respectively producing.
+ * 
+ * @author Simon Herter
+ * 
+ */
 @Path("/pois")
 public class PointOfInterestRessource {
 
+	/**
+	 * This map stores the point of interests, which can be accessed by their
+	 * id.
+	 */
 	private static final Map<Integer, PointOfInterest> pois;
+
+	/**
+	 * This is an id-counter used for giving new POIs an id.
+	 */
 	private static final AtomicInteger id;
 
+	/**
+	 * The above defined variables are initialized here and some default POIs
+	 * are added for demonstrating purpose.
+	 */
 	static {
 		pois = new ConcurrentHashMap<Integer, PointOfInterest>();
 		id = new AtomicInteger();
@@ -47,6 +68,14 @@ public class PointOfInterestRessource {
 		}
 	}
 
+	/**
+	 * This method returns a list of POIs stored in this resource.
+	 * 
+	 * @param search
+	 *            The POIs returned by this method can be filtered by name
+	 *            through this query parameter.
+	 * @return A filtered list of POIs are returned.
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<PointOfInterest> getPOIs(
@@ -63,6 +92,16 @@ public class PointOfInterestRessource {
 		return filterdPOIs;
 	}
 
+	/**
+	 * This method is responsible for adding a new POI to the resource, that is
+	 * send by the user in JSON format.
+	 * 
+	 * @param poi
+	 *            The POI in JSON format that should be newly added to the
+	 *            resource.
+	 * @return If successful, status code 204 ("created") is returned containing
+	 *         the added POI in JSON in response body.
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -73,6 +112,14 @@ public class PointOfInterestRessource {
 				.build();
 	}
 
+	/**
+	 * The method returns the POI with the given id, if it exists. Otherwise
+	 * status code 404 ("not found") is returned.
+	 * 
+	 * @param id
+	 *            The id of the POI that should be returned.
+	 * @return If available, the POI with the given id is returned.
+	 */
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -83,11 +130,21 @@ public class PointOfInterestRessource {
 		return pois.get(id);
 	}
 
+	/**
+	 * This method is used to update an already existing POI using HTTP-PUT.
+	 * 
+	 * @param id
+	 *            The id of the POI that should be updated.
+	 * @param poi
+	 *            The POI containing the updated information.
+	 * @return The updated POI if successful, status code 40x otherwise.
+	 */
 	@PUT
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PointOfInterest updatePOI(@PathParam("id") int id, PointOfInterest poi) {
+	public PointOfInterest updatePOI(@PathParam("id") int id,
+			PointOfInterest poi) {
 		if (!pois.containsKey(id)) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
@@ -99,6 +156,14 @@ public class PointOfInterestRessource {
 		return poi;
 	}
 
+	/**
+	 * Deletes the POI with the given id from the list of POIs.
+	 * 
+	 * @param id
+	 *            The id of the POI that should be deleted.
+	 * @return Status code 204 ("no content" but successful) or status code 404
+	 *         ("not found"), if no POI with this id exists.
+	 */
 	@DELETE
 	@Path("{id}")
 	public Response deletePOI(@PathParam("id") int id) {
