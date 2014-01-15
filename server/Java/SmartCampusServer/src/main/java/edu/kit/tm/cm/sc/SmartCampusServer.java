@@ -12,13 +12,45 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
+/**
+ * This class represents the web application itself. Things you want to add to
+ * your web service must be registered in this class.
+ * 
+ * An annotation is used to define on which path the application accessible.
+ * Path annotations in other classes (such as resources) define sub-paths of
+ * this base path.
+ * 
+ * @author Simon Herter
+ */
 @ApplicationPath("/")
 public class SmartCampusServer extends ResourceConfig {
 
+	/**
+	 * The constructor of this class constructs the application (since it
+	 * inherits "javax.ws.rs.core.Application" indirectly through
+	 * "org.glassfish.jersey.server.ResourceConfig").
+	 * 
+	 * Packages that should be scanned for components are added, Providers, that
+	 * are responsible for (un)marshalling Java beans and some filters are
+	 * registered.
+	 */
 	public SmartCampusServer() {
 		packages("edu.kit.tm.cm.sc");
 
+		/*
+		 * This is a self defined provider for (un)marshalling Java beans. You
+		 * can leave this out to use default Jackson JSON Provider.
+		 */
 		register(JsonProvider.class);
+
+		/*
+		 * This is the default Jackson JSON Provider. It should'nt be necessary
+		 * to add this. After having problems with adding a self-defined
+		 * provider, I had a conversation with a Jersey developer and it turned
+		 * out to be a bug in Jersey. So this is just registered as workaround
+		 * to get my own provider working. Bug report can be found here:
+		 * https://java.net/jira/browse/JERSEY-2335
+		 */
 		register(JacksonJsonProvider.class);
 
 		/* enable Cross-Origin Resource Sharing */
@@ -55,5 +87,4 @@ public class SmartCampusServer extends ResourceConfig {
 			}
 		});
 	}
-
 }
