@@ -10,11 +10,26 @@
 
 	<dependencies>
 		<dependency>
+			<!-- This dependency essentially includes Jersey and the implementing 
+			JAX-RS API (javax.ws.rs). If the web application runs on an application server 
+			like Glassfish, only the JAX-RS API is needed. Delete the jersey-container-servlet
+			dependency and import only the JAX-RS API:
+				<dependency>
+					<groupId>javax.ws.rs</groupId>
+					<artifactId>javax.ws.rs-api</artifactId> 
+					<version>2.0</version>
+					<scope>provided</scope>
+				</dependency>
+			-->
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>2.5.1</version>
 		</dependency>
 		<dependency>
+			<!-- This includes Jackson in the project. If you want to use the default Jackson JSON
+			Provider, you have nothing more to do than import jackson-jaxrs-json-provider.
+			Jersey will then automatically discover the provider and un/marshalls your Java Beans. 
+			-->
 			<groupId>com.fasterxml.jackson.jaxrs</groupId>
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
 			<version>2.3.1</version>
@@ -25,6 +40,8 @@
 		<finalName>SmartCampusServer</finalName>
 		<plugins>
 			<plugin>
+				<!-- This plugin is responsible for compiling java sources. It is configured to
+				use Java 7 syntax. In predefined archetypes often Java 5 is used. -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -35,6 +52,14 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<!-- This plugin is responsible for building a deployable WAR (Web Application
+				Archive) file. In older versions of Java Servlets a "web.xml" file was necessary,
+				that contained information about deployment (Deployment	Descriptor).
+				Since we are building a Java Servlet v3.0, we configure this plugin to not fail,
+				if there is no web.xml file. In Servlet version 3.0 we use annotations instead.
+				To build a WAR file, that can be deployed on any servlet container, you can use
+				Maven goal "package".
+				-->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
@@ -43,6 +68,12 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<!-- We use Tomcat 7 as servlet container. This plugin allows us to let
+				Maven manage the Tomcat 7 server and the deployment of our web service. For local
+				development and testing of the web service, it is easiest to use Maven goal "tomcat7:run",
+				that is provided by this plugin. It will then start a Tomcat 7 server, containing our
+				web service, without any further configuration.
+				-->
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
@@ -56,6 +87,9 @@
 	</organization>
 
 	<properties>
+		<!-- This properties are used by tomcat7-maven-plugin. You can modify them to set the port
+		and path the server is listening on, when you use "tomcat7:run".
+		-->
 		<maven.tomcat.path>/</maven.tomcat.path>
 		<maven.tomcat.port>8888</maven.tomcat.port>
 	</properties>
