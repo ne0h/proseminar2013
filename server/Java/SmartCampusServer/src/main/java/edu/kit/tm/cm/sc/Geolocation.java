@@ -1,5 +1,11 @@
 package edu.kit.tm.cm.sc;
 
+/**
+ * A Java bean that represents a location with geo-coordinates.
+ * 
+ * @author Simon Herter
+ *
+ */
 public class Geolocation {
 
 	private double latitude;

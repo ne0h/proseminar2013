@@ -1,5 +1,11 @@
 package edu.kit.tm.cm.sc;
 
+/**
+ * A Java bean containing a address.
+ * 
+ * @author Simon Herter
+ * 
+ */
 public class Address {
 
 	private String street;

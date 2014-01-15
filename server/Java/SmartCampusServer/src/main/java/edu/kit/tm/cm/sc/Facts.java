@@ -2,6 +2,12 @@ package edu.kit.tm.cm.sc;
 
 import java.util.List;
 
+/**
+ * A Java bean containing additional information for {@link PointOfInterest}.
+ * 
+ * @author Simon Herter
+ *
+ */
 public class Facts {
 
 	private String buildDate;

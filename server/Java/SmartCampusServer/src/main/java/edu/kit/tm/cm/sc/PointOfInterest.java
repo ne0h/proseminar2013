@@ -3,6 +3,12 @@ package edu.kit.tm.cm.sc;
 import java.net.URL;
 import java.util.List;
 
+/**
+ * This is a Java bean representing a point of interest.
+ * 
+ * @author Simon Herter
+ * 
+ */
 public class PointOfInterest {
 
 	private int id;
