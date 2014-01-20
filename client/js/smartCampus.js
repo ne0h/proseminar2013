@@ -123,7 +123,7 @@ function addPOI() {
 			dataType : "json",
 			contentType : "application/json;charset=utf-8",
 		}).success(function(data, textStatus, jqXHR) {
-			$("#keywords").keyup();
+			searchPOI();
 			closeOverlay();
 		}).error(function(jqXHR, textStatus, errorThrown) {
 			alert("Es ist ein Fehler aufgetreten.");
@@ -237,9 +237,13 @@ function closeOverlay() {
 
 $(document).ready(function() {
 
-	navigator.geolocation.getCurrentPosition(function(position) {
-		positionGlobal = position;
-	});
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			positionGlobal = position;
+		}, function() {
+		});
+	}
+
 	var criterias = new RoomSearchCriteria();
 	searchPOI("", criterias, "");
 	searchValueGlobal = $('#keywords').val();
