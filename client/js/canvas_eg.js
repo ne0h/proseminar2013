@@ -1,5 +1,5 @@
-function zeichne_eg() {
-  var canvas = document.getElementById("eg");
+function zeichne_eg(id) {
+  var canvas = document.getElementById(id);
   
   var ctx;
   var linkText="og.html";
@@ -9,11 +9,11 @@ function zeichne_eg() {
   var linkWidth;
   var inLink = false;
   
-  draw();
+  draw(id);
 }
 
-function draw(){
-    canvas = document.getElementById("eg");
+function draw(id){
+    canvas = document.getElementById(id);
     ctx=canvas.getContext("2d");
 
     eg(ctx, canvas);
@@ -25,6 +25,34 @@ function draw(){
     canvas.addEventListener("mousemove", on_mousemove, false);
     canvas.addEventListener("click", on_click, false);
  
+}
+
+
+function on_mousemove (ev) {
+  var x, y;
+ 
+  if (ev.layerX || ev.layerX) { 
+    x = ev.layerX;
+    y = ev.layerY;
+  }
+  x-=canvas.offsetLeft;
+  y-=canvas.offsetTop;
+ 
+  if(x>=linkX && x <= (linkX + linkWidth) &&
+     y<=linkY && y>= (linkY-linkHeight)){
+      document.body.style.cursor = "pointer";
+      inLink=true;
+  }
+  else{
+      document.body.style.cursor = "";
+      inLink=false;
+  }
+}
+ 
+function on_click(e) {
+  if (inLink)  {
+    window.location = linkText;
+  }
 }
 
 function eg (ctx, canvas) {
