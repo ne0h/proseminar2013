@@ -7,6 +7,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.ext.Provider;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
  * This class represents the web application itself. Things you want to add to
  * your web service must be registered in this class.
  * 
- * An annotation is used to define on which path the application accessible.
+ * An annotation is used to define on which path the application is accessible.
  * Path annotations in other classes (such as resources) define sub-paths of
  * this base path.
  * 
@@ -30,25 +31,25 @@ public class SmartCampusServer extends ResourceConfig {
 	 * inherits "javax.ws.rs.core.Application" indirectly through
 	 * "org.glassfish.jersey.server.ResourceConfig").
 	 * 
-	 * Packages that should be scanned for components are added, Providers, that
-	 * are responsible for (un)marshalling Java beans and some filters are
-	 * registered.
+	 * Packages that should be scanned for components are added,
+	 * {@link Provider}s, that are responsible for (un)marshalling Java beans
+	 * and some filters are registered.
 	 */
 	public SmartCampusServer() {
 		packages("edu.kit.tm.cm.sc");
 
 		/*
 		 * This is a self defined provider for (un)marshalling Java beans. You
-		 * can leave this out to use default Jackson JSON Provider.
+		 * can leave this out to use the default Jackson JSON Provider.
 		 */
 		register(JsonProvider.class);
 
 		/*
-		 * This is the default Jackson JSON Provider. It should'nt be necessary
+		 * This is the default Jackson JSON Provider. It shouldn't be necessary
 		 * to add this. After having problems with adding a self-defined
 		 * provider, I had a conversation with a Jersey developer and it turned
 		 * out to be a bug in Jersey. So this is just registered as workaround
-		 * to get my own provider working. Bug report can be found here:
+		 * to get my own provider work. Bug report can be found here:
 		 * https://java.net/jira/browse/JERSEY-2335
 		 */
 		register(JacksonJsonProvider.class);

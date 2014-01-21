@@ -74,7 +74,7 @@ public class PointOfInterestResource {
 	 * @param search
 	 *            The POIs returned by this method can be filtered by name
 	 *            through this query parameter.
-	 * @return A filtered list of POIs are returned.
+	 * @return A filtered list of POIs is returned.
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,7 +94,7 @@ public class PointOfInterestResource {
 
 	/**
 	 * This method is responsible for adding a new POI to the resource, that is
-	 * send by the user in JSON format.
+	 * send by the client in JSON format.
 	 * 
 	 * @param poi
 	 *            The POI in JSON format that should be newly added to the

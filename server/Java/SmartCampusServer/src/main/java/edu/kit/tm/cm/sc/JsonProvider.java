@@ -7,13 +7,14 @@ import javax.ws.rs.ext.Provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 /**
- * This is a JSON Provider used to demonstrate, how own providers can be
+ * This is a JSON {@link Provider} used to demonstrate, how own providers can be
  * defined. It must be registered in the application ({@link SmartCampusServer}
- * ). The only difference to the default Jackson Json Provider is, that the JSON
- * output is indented for better reading. For better performance this should be
- * turned off.
+ * ). The only difference to the default {@link JacksonJsonProvider} is, that
+ * the JSON output is indented for better reading. For better performance this
+ * should be turned off.
  * 
  * @author Simon Herter
  * 
