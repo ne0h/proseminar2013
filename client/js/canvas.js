@@ -2,7 +2,7 @@ function zeichne_eg(id) {
   var canvas = document.getElementById(id);
   
   var ctx;
-  var linkText="og.html";
+  var linkText="javascript:zeichne_og();";
   var linkX=90;
   var linkY=25;
   var linkHeight=20;
@@ -32,7 +32,7 @@ function zeichne_og(id) {
 var canvas = document.getElementById(id);
 
 var ctx;
-var linkText="eg.html";
+var linkText="javascript:zeichne_eg();";
 var linkX=210;
 var linkY=90;
 var linkHeight=20;
