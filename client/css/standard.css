@@ -1,4 +1,27 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic);
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(../fonts/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(../fonts/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Roboto Italic'), local('Roboto-Italic'), url(../fonts/1pO9eUAp8pSF8VnRTP3xnnYhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(../fonts/t6Nd4cfPRhZP44Q5QAjcC7rIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
 
 /* some special elements */
 * { z-index:1; }
@@ -14,6 +37,7 @@ dt { float:left; }
 dt:after { content:":"; }
 dd { margin:0 0 0 150px; }
 meter { cursor:help; }
+audio { width:230px; margin-left:-30px; }
 
 /* hyperlinks */
 a:link, a:visited { color:#009682; text-decoration:underline; }
@@ -108,6 +132,7 @@ aside h2 { margin-top:15px; }
 
 /* articles */
 article { position:relative; min-height:150px; margin:25px 0; padding:0 0 25px 170px; border-bottom:1px solid #009682; }
+article h2 { cursor:pointer; }
 article:last-child { border:0; }
 article .facts h3 { margin:15px 0 0px; font-size:inherit; letter-spacing:1px; text-transform:uppercase; }
 article .image { display:block; position:absolute; top:5px; left:0; }

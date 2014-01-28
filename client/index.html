@@ -5,8 +5,6 @@
     <title>Points of Interest &bull; KIT-Smart-Campus &bull; WASA-Proseminar</title>
     <script src="js/jquery-2.0.3.js"></script>
     <script src="js/smartCampus.js"></script>
-    <script src="js/canvas_eg.js"></script>
-    <script src="js/canvas_og.js"></script>
     <link rel="stylesheet" href="css/standard.css" type="text/css" />
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   </head>
@@ -36,7 +34,7 @@
       <section id="content" role="main">
         <h1>Points of Interest</h1>
         
-        <p class="createpoi"><a href="javascript:showCreateOverlay();" id="createpoi">neuen Point of Interest anlegen</a></p>
+        <p class="createpoi"><a href="#createOverlay" onclick="showCreateOverlay();" id="createpoi">neuen Point of Interest anlegen</a></p>
         
         <form>
           <fieldset>
@@ -58,7 +56,7 @@
             <br class="clear" />
             
             <div class="radius">
-              <label for="radius" title="Die Umkreissuche bezieht sich auf Ihren aktuellen Standort">Umkreissuche</label>
+              <label for="radius_range" title="Die Umkreissuche bezieht sich auf Ihren aktuellen Standort">Umkreissuche</label>
               <span class="input"><span class="prefix">0m</span> <input id="radius_range" type="range" min="100" max="2000" step="50" value="200" onchange="javascript:document.getElementById('radius_value').innerHTML = this.value;" /> <span class="suffix">2000m</span></span>
               <p>Suche im Umkreis von <strong id="radius_value">200</strong> Metern um Ihren aktuellen Standort.</p>
             </div>
@@ -82,24 +80,6 @@
           <p>Der Prototyp stellt eine Ergänzung zur Seminararbeit &quot;Moderne Web-Technologien&quot; im Wintersemester 2013/14 dar.</p>
           <p>Das Hauptziel ist die Erstellung eines Artefaktes anhand dessen die in der Seminararbeit behandelten Technologien und der Funktionsweise demonstriert werden.</p>
           <p><em>Die in diesem Prototypen verwendeten Daten sind frei erfunden!</em></p>
-        </div>
-        <div class="block">
-          <h1>Changelog</h1>
-          <h2><time datetime="2013-12-02">2. Dezember 2013</time></h2>
-          <ul>
-            <li>Meter-Element im Listing hinzugefügt.</li>
-          </ul>
-          <h2><time datetime="2013-12-20">20. Dezember 2013</time></h2>
-          <ul>
-            <li>Overlay zum Anlegen von POIs</li>
-            <li>Overlay für POI-Details</li>
-            <li>Überarbeitung der POI-Liste</li>
-            <li>Submit für das Suchformular</li>
-          </ul>
-          <h2><time datetime="2014-01-05">05. Januar 2014</time></h2>
-          <ul>
-            <li>Responsive Webdesign</li>
-          </ul>
         </div>
       </aside>
             
@@ -225,29 +205,9 @@
           <section class="images">
             <span class="image">image<br />replacement</span>
           </section>
-          
-          <section class="facts">
-            <h2>Route</h2>
-            
-            <figure>
-              <audio controls="controls">
-			    <source src="audiobeispiel.ogg">
-				<source src="audiobeispiel.wav">
-                Hier steht der Navigationstext der in der Audiodatei vorgelesen wird.
-              </audio>
-              <figcaption>Navigation von Ihrem aktuellen Standpunkt zur Bibliothek.</figcaption>
-            </figure>
-          </section>
         </div>
         
         <div class="column small">
-          <section class="plantlayout">
-            <h2>Gebäudeplan</h2>
-            <canvas id="plantlayout"></canvas>
-            <p>JAVASCRIPT GRUPPE<br />
-            GEBÄUDE-CANVAS</p>
-          </section>
-        
           <section class="facts">
             <h2>Informationen</h2>
             <dl id="detailOverlay_facts">
@@ -265,6 +225,19 @@
               <dt>Entfernung</dt>
               <dd><meter max="250" value="130" title="Das Gebäude ist 130 Meter entfernt">130 Meter</meter></dd>
             </dl>
+          </section>
+
+          <section class="facts">
+            <h2>Route</h2>
+
+            <figure>
+              <audio controls="controls">
+                <source src="audiobeispiel.ogg">
+                <source src="audiobeispiel.wav">
+                Hier steht der Navigationstext der in der Audiodatei vorgelesen wird.
+              </audio>
+              <figcaption>Navigation von Ihrem aktuellen Standpunkt zur Bibliothek.</figcaption>
+            </figure>
           </section>
         </div>
         <br class="clear" />

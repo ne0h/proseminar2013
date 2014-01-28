@@ -130,7 +130,7 @@ function addPOI() {
 		});
 
 	} else {
-		alert("Bitte alle Felder ausfüllen");
+		alert("Bitte alle Felder ausfÃ¼llen");
 	}
 }
 
