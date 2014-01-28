@@ -20,6 +20,8 @@ http
 									request.on('end', function() {
 										response.writeHead(200, "OK", {
 											'Access-Control-Allow-Origin' : '*',
+											'Access-Control-Allow-Headers' : 'content-type',
+											'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 											'Content-Type' : 'application/json'
 										});
 										response.end(JSON.stringify(poi));
@@ -54,6 +56,8 @@ http
 												default:
 													response.writeHead(200, {
 														'Access-Control-Allow-Origin' : '*',
+														'Access-Control-Allow-Headers' : 'content-type',
+														'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 														"Content-Type" : "application/json"
 													});
 													response.end(JSON.stringify(poiFound));
@@ -62,6 +66,8 @@ http
 										} else {
 											response.writeHead(404, "Not found", {
 												'Access-Control-Allow-Origin' : '*',
+												'Access-Control-Allow-Headers' : 'content-type',
+												'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 												'Content-Type' : 'text/html'
 											});
 											response
@@ -72,7 +78,6 @@ http
 										;
 									} else if (urlSplit.length > 1) {
 										var tempParameters = urlSplit[1].split("&");
-										console.log(tempParameters);
 										var parameters = [];
 										for (key in tempParameters) {
 											var tempParameter = tempParameters[key];
@@ -83,6 +88,8 @@ http
 										}
 										response.writeHead(200, {
 											'Access-Control-Allow-Origin' : '*',
+											'Access-Control-Allow-Headers' : 'content-type',
+											'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 											"Content-Type" : "application/json"
 										});
 										response.end(JSON.stringify(poiController
@@ -90,6 +97,8 @@ http
 									} else {
 										response.writeHead(200, {
 											'Access-Control-Allow-Origin' : '*',
+											'Access-Control-Allow-Headers' : 'content-type',
+											'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 											"Content-Type" : "application/json"
 										});
 										response.end(JSON.stringify(poiController.getAllPOIs()));
@@ -119,6 +128,8 @@ http
 									} else {
 										response.writeHead(405, "Method not supported", {
 											'Access-Control-Allow-Origin' : '*',
+											'Access-Control-Allow-Headers' : 'content-type',
+											'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 											'Content-Type' : 'text/html'
 										});
 										response
@@ -129,8 +140,10 @@ http
 									}
 									break;
 								default:
-									response.writeHead(405, "Method not supported", {
+									response.writeHead(200, "Method not supported", {
 										'Access-Control-Allow-Origin' : '*',
+										'Access-Control-Allow-Headers' : 'content-type',
+										'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 										'Content-Type' : 'text/html'
 									});
 									response
@@ -142,6 +155,8 @@ http
 						default:
 							response.writeHead(404, "Not found", {
 								'Access-Control-Allow-Origin' : '*',
+								'Access-Control-Allow-Headers' : 'content-type',
+								'Access-Control-Allow-Methods' : 'POST, GET, PUT, DELETE',
 								'Content-Type' : 'text/html'
 							});
 							response

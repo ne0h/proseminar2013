@@ -115,13 +115,10 @@ function addPOI() {
 		$.ajax({
 			url : "http://localhost:8888/pois",
 			async : true,
-			accepts : {
-				text : "application/json",
-			},
 			type : "POST",
 			data : JSON.stringify(poi),
-			dataType : "json",
-			contentType : "application/json;charset=utf-8",
+			contentType:"application/json; charset=utf-8",
+			dataType:"json",
 		}).success(function(data, textStatus, jqXHR) {
 			searchPOI();
 			closeOverlay();
